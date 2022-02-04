@@ -20,39 +20,38 @@ export default function Login() {
       ...user,
       [e.target.name]: e.target.value,
     });
+
+    const response = userValidate(user);
+
+    setError({
+      errorEmail: response.errorEmail,
+      errorPassword: response.errorPassword,
+      errorToken: "",
+    });
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const response = userValidate(user);
 
-    response
-      .then((res) => {
-        setError({
-          errorEmail: res.errorEmail,
-          errorPassword: res.errorPassword,
-          errorToken: res.errorToken,
-        });
+    setError({
+      errorEmail: response.errorEmail,
+      errorPassword: response.errorPassword,
+      errorToken: response.errorToken,
+    });
 
-        setUser({
-          ...user,
-          token: res.token,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+    setUser({
+      ...user,
+      token: response.token,
+    });
 
-  useEffect(() => {
-    if (error.errorToken) {
+    if (response.errorToken)
       Swal.fire({
         title: "Error!",
-        text: "Do you want to continue",
+        text: response.errorToken,
         icon: "error",
       });
-    }
-  }, [error.errorToken]);
+  };
 
   return (
     <form

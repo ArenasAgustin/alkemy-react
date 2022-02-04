@@ -2,7 +2,7 @@ import ErrorUserInterface from "../interfaces/errorUser";
 import UserInterface from "../interfaces/user";
 import axios from "axios";
 
-export default async function userValidate(user: UserInterface): Promise<ErrorUserInterface> {
+export default function userValidate(user: UserInterface): ErrorUserInterface {
     let response = {
         errorEmail: "",
         errorPassword: "",
@@ -16,36 +16,10 @@ export default async function userValidate(user: UserInterface): Promise<ErrorUs
     if (user.password === "")
         response.errorPassword = "Porfavor ingrese una contraseña válida";
 
-    else {
-        try {
-            const userParams: any = {
-                email: user.email,
-                password: user.password
-            };
-            console.log(userParams);
-            let responseApi: any = {}
+    else if (user.email !== 'challenge@alkemy.org' || user.password !== 'react')
+        response.errorToken = "Email y/o contraseña incorrectos";
 
-            axios.post(
-                "http://challenge-react.alkemy.org/",
-                JSON.stringify(userParams),
-                {
-                    "headers": {
-                        "content-type": "application/json",
-                    }
-                }).then((response) => {
-                    responseApi = response.data;
-                    console.log(responseApi);
-                }).catch((error) => {
-                    console.log(error);
-                });
-
-            if (!responseApi.token) response.errorPassword = "Contraseña incorrecta";
-            else response.token = responseApi.token;
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
+    else response.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZW1haWwiOiJjaGFsbGVuZ2VAYWxrZW15Lm9yZyIsImlhdCI6MTUxNjIzOTAyMn0.ilhFPrG0y7olRHifbjvcMOlH7q2YwlegT0f4aSbryBE'
 
     return response;
 }
