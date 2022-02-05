@@ -1,8 +1,14 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import userValidate from "../../utils/userValidate";
 import Swal from "sweetalert2";
+import { setUserAction } from "../../redux/actions/index";
+import { useAppDispatch } from "../../redux/hooks/hooks";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -51,6 +57,10 @@ export default function Login() {
         text: response.errorToken,
         icon: "error",
       });
+    else {
+      dispatch(setUserAction({ email: user.email, token: response.token }));
+      navigate("/home");
+    }
   };
 
   return (

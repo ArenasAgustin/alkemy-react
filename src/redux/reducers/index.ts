@@ -1,12 +1,10 @@
 import ActionInterface from "../../interfaces/actionInterface";
 import StateInterface from "../../interfaces/stateInterface";
-import getUser from "../../utils/getUser";
 import { SET_USER } from "../constants";
 
 const initialState = {
     user: {
         email: "",
-        password: "",
         token: "",
     }
 };

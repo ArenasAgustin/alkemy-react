@@ -1,5 +1,5 @@
 export default interface UserInterface {
     email: string;
-    password: string;
-    token?: string | any;
+    password?: string;
+    token: string;
 }
