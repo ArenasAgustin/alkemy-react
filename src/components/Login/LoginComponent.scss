@@ -36,7 +36,8 @@ $breakpoints:(sm: 540px,
     }
 
     & .login__form-group {
-        margin: .5em 0;
+        margin: .8em 0;
+        position: relative;
 
         & .login__input {
             width: 16em;
@@ -58,6 +59,23 @@ $breakpoints:(sm: 540px,
                 height: 3em;
             }
         }
+
+        & .login__icon-container{
+            font-size: 2em;
+            cursor: pointer;
+            color: #146356;
+            position: absolute;
+            top: .25em;
+            right: .3em;
+        }
+
+        & .login__error{
+            font-size: .8em;
+            color: #f44336;
+            position: absolute;
+            top: 4.1em;
+            left: 0;
+        }
     }
 
     & .login__submit-button {
@@ -71,7 +89,7 @@ $breakpoints:(sm: 540px,
         font-weight: 600;
         font-size: 1.1em;
         border: none;
-        margin-top: .8em;
+        margin-top: 1em;
 
         @include media-up(xl) {
             margin-top: 1.5em;

@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { setUserAction } from "../../redux/actions/index";
 import { useAppDispatch } from "../../redux/hooks/hooks";
 import { useNavigate } from "react-router-dom";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 import "./LoginComponent.scss";
 
 export default function Login() {
@@ -15,12 +16,13 @@ export default function Login() {
     password: "",
     token: "",
   });
-
   const [error, setError] = useState({
     errorEmail: "",
     errorPassword: "",
     errorToken: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setUser({
@@ -64,6 +66,10 @@ export default function Login() {
     }
   };
 
+  const handleShowPassword = (): void => {
+    setShowPassword((prev) => !prev);
+  };
+
   return (
     <form
       className="login__form"
@@ -81,11 +87,12 @@ export default function Login() {
           className="login__input"
           placeholder="Email"
         />
+        <span className="login__error">{error.errorEmail}</span>
       </div>
 
       <div className="login__form-group">
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           name="password"
           id="password"
           value={user.password}
@@ -93,6 +100,10 @@ export default function Login() {
           className="login__input"
           placeholder="Password"
         />
+        <div className="login__icon-container" onClick={handleShowPassword}>
+          {showPassword ? <BsEyeSlash /> : <BsEye />}
+        </div>
+        <span className="login__error">{error.errorPassword}</span>
       </div>
 
       <button type="submit" className="login__submit-button">
