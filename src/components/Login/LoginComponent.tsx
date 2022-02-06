@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { setUserAction } from "../../redux/actions/index";
 import { useAppDispatch } from "../../redux/hooks/hooks";
 import { useNavigate } from "react-router-dom";
+import "./LoginComponent.scss";
 
 export default function Login() {
   const dispatch = useAppDispatch();
@@ -65,34 +66,38 @@ export default function Login() {
 
   return (
     <form
-      className="login"
+      className="login__form"
       onSubmit={(e: FormEvent<HTMLFormElement>) => handleSubmit(e)}
     >
-      <h1>Iniciar Seción</h1>
+      <h1 className="login__title">Login</h1>
 
-      <div className="form-group">
-        <label htmlFor="email">Email</label>
+      <div className="login__form-group">
         <input
           type="email"
           name="email"
           id="email"
           value={user.email}
           onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
+          className="login__input"
+          placeholder="Email"
         />
       </div>
 
-      <div className="form-group">
-        <label htmlFor="password">Password</label>
+      <div className="login__form-group">
         <input
           type="password"
           name="password"
           id="password"
           value={user.password}
           onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
+          className="login__input"
+          placeholder="Password"
         />
       </div>
 
-      <button type="submit">Iniciar Seción</button>
+      <button type="submit" className="login__submit-button">
+        Login
+      </button>
     </form>
   );
 }

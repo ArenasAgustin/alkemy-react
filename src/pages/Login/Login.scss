@@ -1,0 +1,48 @@
+.login__background {
+    width: 100vw;
+    height: 100vh;
+    background: #FFF1BD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .login {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 60em;
+        height: 100%;
+        max-height: 35em;
+        filter: drop-shadow(0px 24px 44px rgba(0, 0, 0, 0.26));
+        border-radius: 30px;
+        overflow: hidden;
+        background: #fff;
+
+        & .login__div-img {
+            width: 100%;
+            max-width: 30em;
+            height: 100%;
+            max-height: 35em;
+            position: relative;
+            overflow: hidden;
+
+            & .login__img {
+                width: auto;
+                height: 35em;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%);
+            }
+        }
+
+        & .login__div-form {
+            width: 100%;
+            max-width: 30em;
+            height: 100%;
+            max-height: 35em;
+        }
+    }
+}
