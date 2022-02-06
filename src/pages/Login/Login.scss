@@ -1,3 +1,15 @@
+$breakpoints:(sm: 540px,
+    md: 768px,
+    xl: 1200px,
+    xxl: 1500px,
+);
+
+@mixin media-up($breakpoint) {
+    @media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+    }
+}
+
 .login__background {
     width: 100vw;
     height: 100vh;
@@ -7,42 +19,80 @@
     align-items: center;
 
     & .login {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        max-width: 60em;
-        height: 100%;
-        max-height: 35em;
+        width: calc(100% - 3em);
+        height: 40em;
         filter: drop-shadow(0px 24px 44px rgba(0, 0, 0, 0.26));
         border-radius: 30px;
         overflow: hidden;
         background: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        @include media-up(md) {
+            flex-direction: row;
+            max-width: 60em;
+            max-height: 35em;
+        }
+
+        @include media-up(xxl) {
+            max-width: 80em;
+            max-height: 50em;
+        }
 
         & .login__div-img {
             width: 100%;
-            max-width: 30em;
             height: 100%;
-            max-height: 35em;
+            max-height: 15em;
             position: relative;
             overflow: hidden;
+            background-color: #ecf7ff;
+
+            @include media-up(md) {
+                max-width: 30em;
+                max-height: 35em;
+            }
+
+            @include media-up(xxl) {
+                max-width: 60em;
+                max-height: 50em;
+            }
 
             & .login__img {
                 width: auto;
-                height: 35em;
+                height: 15em;
                 position: absolute;
                 top: 0;
                 left: 50%;
                 transform: translate(-50%);
+
+                @include media-up(md) {
+                    width: auto;
+                    height: 100%;
+                    max-height: 35em;
+                }
+
+                @include media-up(xxl) {
+                    max-height: 50em;
+                }
             }
         }
 
         & .login__div-form {
             width: 100%;
-            max-width: 30em;
             height: 100%;
-            max-height: 35em;
+            max-height: 25em;
+
+            @include media-up(md) {
+                max-width: 30em;
+                max-height: 35em;
+            }
+
+            @include media-up(xxl) {
+                max-width: 60em;
+                max-height: 50em;
+            }
         }
     }
 }
