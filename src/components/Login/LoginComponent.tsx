@@ -6,6 +6,7 @@ import { useAppDispatch } from "../../redux/hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import "./LoginComponent.scss";
+import "animate.css";
 
 export default function Login() {
   const dispatch = useAppDispatch();
@@ -23,6 +24,13 @@ export default function Login() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+
+  const swalCustom = Swal.mixin({
+    customClass: {
+      title: "title-class",
+      container: "container-class",
+    },
+  });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setUser({
@@ -55,10 +63,16 @@ export default function Login() {
     });
 
     if (response.errorToken)
-      Swal.fire({
+      swalCustom.fire({
         title: "Error!",
         text: response.errorToken,
         icon: "error",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
       });
     else {
       dispatch(setUserAction({ email: user.email, token: response.token }));
