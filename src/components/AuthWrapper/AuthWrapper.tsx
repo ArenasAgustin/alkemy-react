@@ -11,7 +11,7 @@ export const AuthWrapper: FunctionComponent<RouteProps> = () => {
     if (!user.token) {
       navigate("/");
     }
-  }, []);
+  });
 
   return (
     <>

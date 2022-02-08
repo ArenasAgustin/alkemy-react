@@ -1,6 +1,5 @@
 import ErrorUserInterface from "../interfaces/errorUser";
 import UserInterface from "../interfaces/user";
-import axios from "axios";
 
 export default function userValidate(user: UserInterface): ErrorUserInterface {
     let response = {

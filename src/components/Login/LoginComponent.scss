@@ -90,6 +90,7 @@ $breakpoints:(sm: 540px,
         font-size: 1.1em;
         border: none;
         margin-top: 1em;
+        cursor: pointer;
 
         @include media-up(xl) {
             margin-top: 1.5em;

@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import userValidate from "../../utils/userValidate";
 import Swal from "sweetalert2";
 import { setUserAction } from "../../redux/actions/index";
